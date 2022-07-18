@@ -1,14 +1,16 @@
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
+import org.jetbrains.kotlin.util.capitalizeDecapitalize.toLowerCaseAsciiOnly
 
 plugins {
     id("org.springframework.boot") version "2.7.1"
     id("io.spring.dependency-management") version "1.0.11.RELEASE"
+    id("com.google.cloud.tools.jib") version "3.2.1"
     kotlin("jvm") version "1.6.21"
     kotlin("plugin.spring") version "1.6.21"
 }
 
 group = "com.mymyeong"
-version = "0.0.1-SNAPSHOT"
+version = "0.0.1"
 java.sourceCompatibility = JavaVersion.VERSION_17
 
 repositories {
@@ -33,4 +35,29 @@ tasks.withType<KotlinCompile> {
 
 tasks.withType<Test> {
     useJUnitPlatform()
+}
+
+
+jib {
+    from {
+        image = "amazoncorretto:17"
+        platforms {
+            platform {
+                architecture = "arm64"
+                os = "linux"
+            }
+        }
+    }
+    to {
+        image = "${project.name.toLowerCaseAsciiOnly()}-${project.version.toString().toLowerCase()}"
+        tags = setOf("latest")
+    }
+    container {
+        creationTime = "USE_CURRENT_TIMESTAMP"
+
+        jvmFlags = listOf("-Dspring.profiles.active=local", "-XX:+UseContainerSupport", "-Dserver.port=8080", "-Dfile.encoding=UTF-8")
+
+        ports = listOf("8080")
+    }
+
 }
