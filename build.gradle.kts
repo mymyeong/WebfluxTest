@@ -22,6 +22,9 @@ dependencies {
     implementation("org.springframework.boot:spring-boot-starter")
     implementation("org.jetbrains.kotlin:kotlin-reflect")
     implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8")
+    implementation("mysql:mysql-connector-java")
+    implementation("org.flywaydb:flyway-mysql")
+    implementation("org.springframework.boot:spring-boot-starter-data-jpa")
     testImplementation("org.springframework.boot:spring-boot-starter-test")
     testImplementation ("io.projectreactor:reactor-test")
 }
@@ -36,7 +39,6 @@ tasks.withType<KotlinCompile> {
 tasks.withType<Test> {
     useJUnitPlatform()
 }
-
 
 jib {
     from {
@@ -59,5 +61,4 @@ jib {
 
         ports = listOf("8080")
     }
-
 }
