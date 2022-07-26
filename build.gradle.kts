@@ -5,6 +5,7 @@ plugins {
     id("org.springframework.boot") version "2.7.1"
     id("io.spring.dependency-management") version "1.0.11.RELEASE"
     id("com.google.cloud.tools.jib") version "3.2.1"
+    id("io.kotest.multiplatform") version "5.0.2"
     kotlin("jvm") version "1.6.21"
     kotlin("plugin.spring") version "1.6.21"
 }
@@ -37,8 +38,9 @@ dependencies {
     testImplementation("org.springframework.boot:spring-boot-starter-test")
     testImplementation ("io.projectreactor:reactor-test")
 
-    testImplementation("io.kotest:kotest-runner-junit5-jvm:5.3.2")
-    testImplementation("io.kotest:kotest-assertions-core-jvm:5.3.2")
+    testImplementation("io.kotest:kotest-framework-engine")
+    testImplementation("io.kotest:kotest-runner-junit5:5.3.2")
+    testImplementation("io.kotest:kotest-assertions-core:5.3.2")
     runtimeOnly("io.kotest:kotest-property:5.3.2")
 
     testImplementation("io.mockk:mockk:1.12.4")
