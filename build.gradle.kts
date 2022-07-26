@@ -18,15 +18,30 @@ repositories {
 }
 
 dependencies {
-    implementation ("org.springframework.boot:spring-boot-starter-webflux")
-    implementation("org.springframework.boot:spring-boot-starter")
     implementation("org.jetbrains.kotlin:kotlin-reflect")
     implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8")
+
+    implementation("org.springframework.boot:spring-boot-starter")
+    implementation ("org.springframework.boot:spring-boot-starter-webflux")
+
     implementation("mysql:mysql-connector-java")
+
+//    implementation("org.springframework.boot:spring-boot-starter-data-jpa")
+
     implementation("org.flywaydb:flyway-mysql")
-    implementation("org.springframework.boot:spring-boot-starter-data-jpa")
+
+    implementation("io.r2dbc:r2dbc-pool")
+    implementation("dev.miku:r2dbc-mysql:0.8.2.RELEASE")
+    implementation("org.springframework.boot:spring-boot-starter-data-r2dbc")
+
     testImplementation("org.springframework.boot:spring-boot-starter-test")
     testImplementation ("io.projectreactor:reactor-test")
+
+    testImplementation("io.kotest:kotest-runner-junit5-jvm:5.3.2")
+    testImplementation("io.kotest:kotest-assertions-core-jvm:5.3.2")
+    runtimeOnly("io.kotest:kotest-property:5.3.2")
+
+    testImplementation("io.mockk:mockk:1.12.4")
 }
 
 tasks.withType<KotlinCompile> {
