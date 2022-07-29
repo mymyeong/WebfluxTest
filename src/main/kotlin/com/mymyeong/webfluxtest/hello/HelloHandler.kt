@@ -1,4 +1,4 @@
-package com.mymyeong.webfluxtest
+package com.mymyeong.webfluxtest.hello
 
 import org.springframework.http.MediaType
 import org.springframework.stereotype.Component

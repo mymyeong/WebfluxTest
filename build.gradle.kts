@@ -27,13 +27,19 @@ dependencies {
 
     implementation("mysql:mysql-connector-java")
 
-//    implementation("org.springframework.boot:spring-boot-starter-data-jpa")
+    implementation("io.netty:netty-resolver-dns-native-macos:4.1.77.Final") {
+        artifact {
+            classifier = "osx-aarch_64"
+        }
+    }
 
     implementation("org.flywaydb:flyway-mysql")
 
     implementation("io.r2dbc:r2dbc-pool")
     implementation("dev.miku:r2dbc-mysql:0.8.2.RELEASE")
     implementation("org.springframework.boot:spring-boot-starter-data-r2dbc")
+
+    implementation("org.springframework.boot:spring-boot-configuration-processor")
 
     testImplementation("org.springframework.boot:spring-boot-starter-test")
     testImplementation ("io.projectreactor:reactor-test")

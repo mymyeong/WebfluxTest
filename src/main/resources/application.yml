@@ -1,12 +1,4 @@
 spring:
-#  datasource:
-#    url: jdbc:mysql://localhost:3306/test?serverTimeZone=UTC&CharacterEncoding=UTF-8
-#    username: root
-#    password: root
-#  jpa:
-#    show-sql: true
-#    hibernate:
-#      ddl-auto: validate
   r2dbc:
     url: r2dbc:pool:mysql:://localhost:3306/test?serverTimeZone=UTC&CharacterEncoding=UTF-8
     username: root
@@ -16,6 +8,12 @@ spring:
     user: ${spring.r2dbc.username}
     password: ${spring.r2dbc.password}
     baseline-on-migrate: true
+    schemas: test
+    default-schema: test
+
+weather:
+  url: https://apis.data.go.kr/1360000/MidFcstInfoService/getMidFcst
+  serviceKey: qPhk6Zbnri6QAelN1UiLUMtUYiNazCPZ7xgAmjiEcnu6OGAFwGFIQmlYDQTOa/9cUaed95WnXiQJpiDGmmEmKg==
 
 server:
   port: 8080
